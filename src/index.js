@@ -7,7 +7,8 @@ import reportWebVitals from './reportWebVitals';
 /**
  * @description Below importing and configuring Apollo's GraphQL client.
  */
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
 import { gql } from '@apollo/client';
 
 const client = new ApolloClient({
@@ -17,28 +18,34 @@ const client = new ApolloClient({
 
 // Testing gql connection and tx/rx with hardcoded query below
 // REMEMBER TO REMOVE BEFORE PROD BUILD
-  client
-    .query({
-      query: gql`
-        query GetCharacters {
-          characters {
-            results {
-              id
-              name
-              gender
-              image
-            }
-          }
-        }
-      `
-    }).then((result) => console.log('GQL Query Result: ', result))
-      .catch((error) => console.log('The following error occurred: ', error))
+  // client
+  //   .query({
+  //     query: gql`
+  //       query GetCharacters {
+  //         characters {
+  //           info {
+  //             count
+  //             pages
+  //             next
+  //             prev
+  //           }
+  //           results {
+  //             id
+  //             name
+  //           }
+  //         }
+  //       }
+  //     `
+  //   }).then((result) => console.log('GQL Query Result: ', result))
+  //     .catch((error) => console.log('The following error occurred: ', error))
 
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

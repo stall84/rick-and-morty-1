@@ -1,14 +1,24 @@
+import React, { useState } from 'react';
+import { useQuery, gql } from '@apollo/client';
 
 import './App.css';
 
-import LandingSelection from './components/LandingSelection';
+import CharacterSelection from './components/CharacterSelection';
+
+/**
+ * @description Styled Component Imports
+ */
+import { Container } from './components/styled-components/Container';
+
+
 
 
 function App() {
   return (
     <div className="App">
-      <h1>RICK AND MORTY</h1>
-      <LandingSelection />
+      <Container>
+        <CharacterSelection />
+      </Container>
     </div>
   );
 }
