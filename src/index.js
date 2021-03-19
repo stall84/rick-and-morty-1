@@ -9,7 +9,6 @@ import reportWebVitals from './reportWebVitals';
  */
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
-import { gql } from '@apollo/client';
 
 const client = new ApolloClient({
   uri: 'https://rickandmortyapi.com/graphql',

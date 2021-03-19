@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import logo from '../../assets/rmpng.png'
 import mobileLogo from '../../assets/rmpng-mobile.png';
