@@ -1,53 +1,94 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 
-import MobileStepper from '@material-ui/core/MobileStepper';
+// Material-UI Imports
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import Loader from 'react-loader-spinner';
 
+
+// Apollo-GraphQL imports
 import { useQuery } from '@apollo/client';
 import { GET_CHARACTERS } from '../graphql/queries';
 
-
+// Custom Components
 import { ListContainer } from './styled-components/ListContainer';
-
-
-
-
+import { SpacerDiv } from './styled-components/ListContainer';
+import { StyledList } from './styled-components/StyledList';
+import { StyledStepper } from './styled-components/StyledStepper';
+import CharacterModal from './CharacterModal';
 
 export default function CharacterSelection(props) {
 
+    // Individual character modal state
+    const [modalOpen, setModalOpen] = useState(false);
+
     // State functions to track which 'page' the user is on so that the corresponding graphQL page can be queried on demand
-    const [currentPage, setcurrentPage] = useState(0);
+    const [currentPage, setcurrentPage] = useState(1);
+
+    // On user character select, store ID to forward to modal gql call
+    const [characterId, setCharacterId] = useState('');
+   
+
+    // GraphQL 'controller' hooks and load-rendering
     const { loading, error, data } = useQuery(GET_CHARACTERS, {
-        variables: { page: 1 }
+        variables: { page: currentPage }
     });
 
-    if (loading) return 'Loading, Please Wait ...';
+    if (loading) return (
+        <Loader 
+            type="TailSpin"
+            color="rgb(251, 209, 188)"
+            height={180}
+            width={180}
+            timeout={2000}
+        />
+    );
     if (error) return `The following error occurred: ${error.message}`;
-    console.log(data);
 
+    const characterHandler = (id) => {
+        // When user selects character, set that ID, set the modal state to open
+        setCharacterId(id);
+        setModalOpen(true);
+    }
+    
+    const modalCloseHandler = () => {
+        // If the modal is open, and this prop-forwarded function is called, close the modal and reset
+        // the character ID
+        if (modalOpen) {
+            setModalOpen(false);
+            setCharacterId('');
+        }
+    }
 
-   
-    
-    
+    // Compound Component that will render out each character from the API (In groups of 20)
     const CharacterStepperList = () => {
         
          // Individual Character 'List Item'
         const CharacterRow = (props) => {
-      
+            const { id, name, image } = props.characterInfo;
             return (
-                <ListItem button >
-                    <ListItemText>
-                        Test Row: {data.characters.results[0].name}
-                    </ListItemText>
+                <ListItem
+                    button 
+                    id={id} 
+                    onClick={e => characterHandler(id)}
+                    divider={true}
+                    >
+                    <ListItemText primary={name} />
+                    <ListItemAvatar>
+                        <Avatar 
+                            alt={`Avatar number: ${id}`} 
+                            src={image}
+                        />
+                    </ListItemAvatar>    
                 </ListItem>
             )
         
-    }
+        }
         
         const nextStepHandler = () => {
             // Increment the current characters page user is on by one when they click to move 'up' in pages
@@ -60,13 +101,26 @@ export default function CharacterSelection(props) {
         }
 
         return (
-            <ListContainer>
-                { data &&
-                    <CharacterRow />
-                }
-                <MobileStepper 
+            <>
+            { characterId && 
+                < CharacterModal 
+                    characterId={characterId} 
+                    open={modalOpen}
+                    close={modalCloseHandler}    
+                />
+            }
+            <ListContainer>     
+                <SpacerDiv>
+                <StyledList>
+                    { data && data.characters.results.map((char, i) => {
+                        return <CharacterRow characterInfo={char} key={i} />
+                        })
+                    }
+                </StyledList>
+                </SpacerDiv>
+                <StyledStepper
                     variant="progress"
-                    steps={6}
+                    steps={34}
                     position="static"
                     activeStep={currentPage}
                     nextButton={
@@ -79,30 +133,22 @@ export default function CharacterSelection(props) {
                     backButton={
                         <Button size="small"
                             onClick={previousStepHandler}
-                            disabled={currentPage === 0}>
+                            disabled={currentPage === 1}>
                         LAST PAGE <KeyboardArrowLeft />   
                         </Button>
                     }
                 />
             </ListContainer>
+            </>
         )
     }
 
     return (
-        <div>
-            <h2>LANDING SELECTION</h2>
-            <h4>Choose the character you want to know more about below</h4>
+        <>
+            <h3>Choose the character you want to know more about below!</h3>
             <CharacterStepperList />
-        </div>
+        </>
     )
-}
-
-/**
- * @description 
- */
-
-CharacterSelection.propTypes = {
-
 }
 
 
