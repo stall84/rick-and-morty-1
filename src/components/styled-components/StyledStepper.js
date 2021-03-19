@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 
