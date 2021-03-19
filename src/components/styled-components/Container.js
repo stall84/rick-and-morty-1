@@ -4,13 +4,16 @@ import styled from 'styled-components';
 export const Container = styled.div`
 
     box-sizing: 'border-box';
-    height: 70vh;
+    height: 100vh;
     width: 100vw;
     min-width: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    background-color: #092A33;
+    background-color: var(--Lobiolly);
+    @media(max-width: 400px) {
+        padding: 8px;
+    }
 
 `;

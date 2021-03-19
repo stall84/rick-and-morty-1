@@ -28,3 +28,24 @@
   --level-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
+
+a {
+  text-decoration: none;
+  text-shadow: 0.5px 0.5px 0.5px var(--Tiber);
+  color: var(--LightenUpPeach);
+}
+
+a:hover {
+  color: var(--cerulCompliment);
+  transition: all 0.8s ease;
+}
+
+/* Specialized Classes where local-scoping not-needed */
+.characterDetailText {
+  color: var(--cerulCompliment);
+  text-shadow: 0.5px 0.5px 0.5px var(--Cerulean);
+}
+
+.logo {
+  background-image: url(./assets/rmpng.png);
+}

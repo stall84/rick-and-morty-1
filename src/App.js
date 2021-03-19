@@ -3,7 +3,9 @@ import { useQuery, gql } from '@apollo/client';
 
 import './App.css';
 
+import {StyledHeader} from './components/styled-components/StyledHeader';
 import CharacterSelection from './components/CharacterSelection';
+import Footer from './components/Footer';
 
 /**
  * @description Styled Component Imports
@@ -17,7 +19,9 @@ function App() {
   return (
     <div className="App">
       <Container>
+        <StyledHeader />
         <CharacterSelection />
+        <Footer />
       </Container>
     </div>
   );
