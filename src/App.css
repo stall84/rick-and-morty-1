@@ -1,3 +1,30 @@
 .App {
   text-align: center;
 }
+
+:root {
+  /* Color Themes */
+  /* First 4 'primary' colors are taken from the Rick and Morty Adult Swim program page */
+  /* Primaries */
+  --Cerulean: rgb(10, 171, 193);
+  --Lobiolly: rgb(190, 204, 206);
+  --Tiber: rgb(9, 42, 51);
+  --MineralGreen: rgb(58, 92, 92);
+  --LightenUpPeach: rgb(251, 209, 188);
+
+  /* Compliments of Primaries */
+  --mgCompliment: rgb(92, 58, 58);
+  --tiberCompliment: rgb(51, 18, 9);
+  --lobioCompliment: rgb(206, 192, 190);
+  --cerulCompliment: rgb(193, 32, 10);
+  --lightUpCompliment: rgb(188, 230, 251);
+
+  /*  Elevation */
+  --level-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --level-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --level-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --level-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
