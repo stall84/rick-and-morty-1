@@ -12,6 +12,7 @@ export const ListContainer = styled.div`
     padding: 0.5em;
     @media(max-width: 415px) {
         width: 340px;
+        height: 400px;
     }
 `;
 
