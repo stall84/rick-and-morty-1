@@ -31,6 +31,7 @@ export default function CharacterSelection(props) {
     const [currentPage, setcurrentPage] = useState(1);
 
     // On user character select, store ID to forward to modal gql call
+    // This also tracks the 'active' character
     const [characterId, setCharacterId] = useState('');
    
 

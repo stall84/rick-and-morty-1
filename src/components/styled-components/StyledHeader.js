@@ -9,7 +9,7 @@ export const StyledHeader = styled.header`
     background-repeat: no-repeat;
     background-position: center;
     @media(max-width: 500px) {
-        height: 20vh;
+        height: 12.5vh;
         background-image: url(${mobileLogo});
     }
 `;

@@ -8,7 +8,7 @@ export const StyledList = styled.ul`
     max-height: 380px;
     padding: 5px;
     @media(max-width: 415px) {
-        height: 300px;
+        height: 280px;
         width: 300px;
     }
 `;

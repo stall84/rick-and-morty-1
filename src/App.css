@@ -31,8 +31,8 @@
 
 a {
   text-decoration: none;
-  text-shadow: 0.5px 0.5px 0.5px var(--Tiber);
-  color: var(--LightenUpPeach);
+  text-shadow: 0.66px 0.66px 0.66px var(--cerulCompliment);
+  color: var(--Tiber);
 }
 
 a:hover {
