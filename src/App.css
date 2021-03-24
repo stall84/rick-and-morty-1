@@ -29,6 +29,15 @@
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
+h3 {
+  text-shadow: 0.5px 0.5px 0.5px var(--lightUpCompliment);
+}
+
+h3:hover {
+  text-shadow: 0.5px 0.5px 0.5px var(--LightenUpPeach);
+  transition: all 0.8s ease-in-out;
+}
+
 a {
   text-decoration: none;
   text-shadow: 0.66px 0.66px 0.66px var(--cerulCompliment);

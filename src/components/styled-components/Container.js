@@ -12,7 +12,8 @@ export const Container = styled.div`
     align-items: center;
     background-color: var(--Lobiolly);
     @media(max-width: 400px) {
-        padding: 8px;
+        padding-top: 0.3em;
+        padding-bottom: 0.3em;
     }
 
 `;
