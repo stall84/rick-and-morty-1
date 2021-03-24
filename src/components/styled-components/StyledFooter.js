@@ -6,4 +6,5 @@ export const StyledFooter = styled.footer`
     height: 5vh;
     position: fixed;
     bottom: 0;
+    margin-bottom: 0.3em;
 `;
